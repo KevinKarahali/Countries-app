@@ -5,6 +5,7 @@ import {ForCountriesComponent} from './pages/for-countries/for-countries.compone
 import {ForRegionComponent} from './pages/for-region/for-region.component';
 import {SeeCountryComponent} from './pages/see-country/see-country.component';
 import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     ForCapitalComponent,
