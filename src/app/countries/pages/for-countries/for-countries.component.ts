@@ -15,19 +15,24 @@ export class ForCountriesComponent {
   constructor(private countryService: CountryService) {
   }
 
-  search() {
+  search($event: string) {
     this.isError = false;
+    this.term = $event;
     this.countryService.searchCountry(this.term).subscribe({
-        next: (data) => {
-          console.log(data);
+        next: (data: Country[]) => {
           this.countries = data;
         },
         error: (err) => {
+          console.log(err);
           this.isError = true;
           this.countries = [];
         }
       }
     )
+  }
+
+  suggestions(term: string) {
+    this.isError = false;
   }
 }
 
