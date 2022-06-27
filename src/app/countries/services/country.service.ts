@@ -21,5 +21,11 @@ export class CountryService {
     return this.http.get<Country[]>(this.apiUrl + 'capital/' + capitalName)
   }
 
-  //search by
+  getCountryForAlpha(id: string): Observable<Country> {
+    return this.http.get<Country>(this.apiUrl + 'alpha/' + id)
+  }
+
+  searchRegion(region: string): Observable<Country[]> {
+    return this.http.get<Country[]>(this.apiUrl + 'region/' + region)
+  }
 }

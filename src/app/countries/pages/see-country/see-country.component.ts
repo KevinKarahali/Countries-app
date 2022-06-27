@@ -1,16 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from "@angular/router";
+import {CountryService} from "../../services/country.service";
+import {switchMap, tap} from "rxjs";
+import {Country} from "../../interfaces/country.interface";
 
 @Component({
   selector: 'app-see-country',
   templateUrl: './see-country.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class SeeCountryComponent implements OnInit {
+  country!: Country;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private activatedRoute: ActivatedRoute, private countryService: CountryService) {
   }
 
+
+  ngOnInit(): void {
+
+    this.activatedRoute.params.pipe(
+      switchMap(({id}: Params) => this.countryService.getCountryForAlpha(id)),
+      tap(console.log)
+    )
+      .subscribe(country => {
+        this.country = country;
+      })
+  }
 }
